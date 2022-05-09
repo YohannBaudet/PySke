@@ -6,6 +6,7 @@ Classes:
     * SList
     * Timing
     * Distribution
+    * SStream
 
 Modules:
     * par
@@ -17,5 +18,6 @@ from pyske.core.list import PList, SList, Distribution
 from pyske.core.util.timing import Timing
 from pyske.core.util import par
 from pyske.core.util import fun
+from pyske.core.stream import SStream
 
-__all__ = ['PList', 'SList', 'Timing', 'Distribution', 'par', 'fun']
+__all__ = ['PList', 'SList', 'Timing', 'Distribution', 'par', 'fun', 'SStream']
