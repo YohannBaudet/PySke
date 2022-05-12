@@ -45,11 +45,11 @@ class PStream(list, Generic[T]):
 
     def map(self, unary_op: Callable[[T], R]):
         self.__operations.append([self.mapr, unary_op])
-        return self.__stream.getdata()
+        return self.__stream.getwindow()
 
     def filter(self, predicate: Callable[[T], bool]):
         self.__operations.append([self.filterr, predicate])
-        return self.__stream.getdata()
+        return self.__stream.getwindow()
 
     def reduce(self, binary_op: Callable[[T, T], T], neutral: Optional[T] = None):
         self.__operations.append([self.reducer, binary_op, neutral])
@@ -76,6 +76,9 @@ class PStream(list, Generic[T]):
 
     def getoperations(self):
         return self.__operations
+
+    def getwindow(self):
+        return self.__stream.getwindow()
 
     def run(self):
         if _PID==0:
