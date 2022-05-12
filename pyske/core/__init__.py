@@ -18,6 +18,6 @@ from pyske.core.list import PList, SList, Distribution
 from pyske.core.util.timing import Timing
 from pyske.core.util import par
 from pyske.core.util import fun
-from pyske.core.stream import SStream
+from pyske.core.stream import SStream, PStream
 
-__all__ = ['PList', 'SList', 'Timing', 'Distribution', 'par', 'fun', 'SStream']
+__all__ = ['PList', 'SList', 'Timing', 'Distribution', 'par', 'fun', 'SStream', 'PStream']

@@ -12,18 +12,21 @@ R = TypeVar('R')  # pylint: disable=invalid-name
 
 class SStream(list, Generic[T]):
 
-    def __init__(self, source: str, type, windowsize: int = 10):
+    def __init__(self, source: str, types: T, windowsize: int = 10):
         super().__init__()
-        self.__type = type
+        self.__type : T = types
         self.__source: str = source
         self.__window: SList = SList()
         self.__windowsize: int = windowsize
         self.__lastwindowvalue: T = None
-        self.__lastwindow: list = []
+        self.__data: SList = SList()
         self.__lastsourceline: int = 0
 
     def getlastwindowvalue(self):
         return self.__lastwindowvalue
+
+    def getdata(self):
+        return self.__data
 
     def getvaluefromsource(self):
         i = 0
@@ -59,8 +62,16 @@ class SStream(list, Generic[T]):
         return self.__lastwindowvalue
 
     def window(self):
-        self.__lastwindow = SList(self.__window)
+        self.__data.extend(self.__window)
         self.__window = SList()
+
+    def getwindow(self):
+        return self.__window
+
+    def setstream(self, window: SList, lastwindowvalue: T, lastwindow: []):
+        self.__window = window
+        self.__lastwindowvalue = lastwindowvalue
+        self.__data = lastwindow
 
 
 
